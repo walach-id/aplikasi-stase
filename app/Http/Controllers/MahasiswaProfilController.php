@@ -17,19 +17,14 @@ class MahasiswaProfilController extends Controller
      */
     public function index($nim)
     {
-        $mahasiswa = mahasiswa::where('nim', $nim)->first();
 
-        if ($mahasiswa) {
-            $dosen = dosen::where('nip', $mahasiswa->nip_dosen_pembimbing)->first();
-            return view('mahasiswa.index', [
-                'mahasiswa' => $mahasiswa,
-                'dosen' => $dosen,
-            ]);
-        } else {
-            return view('mahasiswa.index', [
-                'mahasiswa' => $mahasiswa,
-            ]);
-        }
+        $mahasiswa = mahasiswa::where('nim', $nim)->with(['dosen'])->first();
+        $dosen = $mahasiswa->dosen;
+
+        return view('mahasiswa.index', [
+            'mahasiswa' => $mahasiswa,
+            'dosen' => $dosen,
+        ]);
     }
 
     /**

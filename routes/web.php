@@ -18,11 +18,13 @@ Route::get('/dashboard', function () {
 require __DIR__ . '/auth.php';
 
 // PROFIL DOSEN
+Route::get('dosen/{nip}', fn ($nip) =>  redirect("dosen/{$nip}/profil/"));
 Route::get('dosen/{nip}/profil/', [DosenProfilController::class, 'index']);
 Route::get('dosen/profil/add', [DosenProfilController::class, 'create']);
 Route::post('dosen/profil/store', [DosenProfilController::class, 'store']);
 
 // PROFIL MAHASISWA
+Route::get('mahasiswa/{nim}', fn ($nim) =>  redirect("mahasiswa/{$nim}/profil/"));
 Route::get('mahasiswa/{nim}/profil/', [MahasiswaProfilController::class, 'index']);
 Route::get('mahasiswa/profil/add', [MahasiswaProfilController::class, 'create']);
 Route::post('mahasiswa/profil/store', [MahasiswaProfilController::class, 'store']);

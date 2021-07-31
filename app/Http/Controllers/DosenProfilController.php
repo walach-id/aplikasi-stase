@@ -17,9 +17,8 @@ class DosenProfilController extends Controller
      */
     public function index($nip)
     {
-        $mahasiswa = mahasiswa::where('nip_dosen_pembimbing', $nip)->paginate(7);
         $dosen = dosen::where('nip', $nip)->first();
-
+        $mahasiswa = $dosen->mahasiswa()->paginate(7);
 
         return view('dosen.index', [
             'list_mahasiswa' => $mahasiswa,
@@ -34,7 +33,6 @@ class DosenProfilController extends Controller
      */
     public function create()
     {
-
         return view('dosen.profil.add');
     }
 

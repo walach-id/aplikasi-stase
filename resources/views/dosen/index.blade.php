@@ -29,16 +29,7 @@
                             Email Aktif : {{ $dosen->email }}
                         </p>
                         <p class="text-base font-bold text-gray-500 text-center mt-3">
-                            @php
-                                $i = 0;
-                            @endphp
-                            @foreach ($list_mahasiswa as $item)
-                                @php
-                                    $i++;
-                                @endphp
-                            @endforeach
-
-                            Jumlah Mahasiswa/i Bimbingan : {{ $i }}
+                            Jumlah Mahasiswa/i Bimbingan : {{ $list_mahasiswa->total() }}
                         </p>
                     </div>
 
