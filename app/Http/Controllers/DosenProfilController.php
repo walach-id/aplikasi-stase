@@ -59,9 +59,8 @@ class DosenProfilController extends Controller
 
         if ($request->foto) {
             $attributes['foto'] =
-                $request->file('foto')->store('foto/dosen');
+                $request->file('foto')->storeAs('foto/dosen', $attributes['nip']);
         }
-
 
         $dosen = Dosen::create($attributes);
 
