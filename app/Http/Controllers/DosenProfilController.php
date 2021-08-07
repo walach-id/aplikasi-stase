@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\mahasiswa;
 use App\Models\dosen;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Validator;
 
 class DosenProfilController extends Controller
 {
@@ -17,13 +14,18 @@ class DosenProfilController extends Controller
      */
     public function index($nip)
     {
-        $dosen = dosen::where('nip', $nip)->first();
-        $mahasiswa = $dosen->mahasiswa()->paginate(7);
+        $dosen = Dosen::where('nip', $nip)->first();
 
-        return view('dosen.index', [
-            'list_mahasiswa' => $mahasiswa,
-            'dosen' => $dosen,
-        ]);
+        $mahasiswa = $dosen ? $dosen->mahasiswa()->paginate(7) : null;
+
+        if ($mahasiswa) {
+            return view('dosen.index', [
+                'list_mahasiswa' => $mahasiswa,
+                'dosen' => $dosen,
+            ]);
+        }
+
+        return redirect('/');
     }
 
     /**
@@ -44,29 +46,54 @@ class DosenProfilController extends Controller
      */
     public function store(Request $request)
     {
-        $dosen = new dosen();
+        $attributes = $request->validate([
+            'nip' => 'required|numeric|unique:dosen,nip',
+            'nama_lengkap' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:dosen,email',
+            // 'password' => 'required|min:7|max:255',
+            'wa_aktif' => 'numeric|nullable',
+            'foto' => 'file|nullable'
+        ]);
 
-        $file = Request()->foto;
-        date_default_timezone_set("Asia/Jakarta");
-        $tanggal = date("Ymd");
-        $nama = Request()->nama;
+        // $attributes['password'] = bcrypt($attributes['password']);
 
-        $fileName = $nama . '_' . $tanggal . '.' . $file->extension();
-        //make directory
-        $path = public_path() . '/img/dosen/' . $nama;
-        if (!File::exists($path)) {
-            File::makeDirectory($path, 0777, true, false);
+        if ($request->foto) {
+            $attributes['foto'] =
+                $request->file('foto')->store('foto/dosen');
         }
-        // pindahkan file
-        $file->move(public_path('/img/dosen/' . $nama), $fileName);
 
-        $dosen->nip = $request->nip;
-        $dosen->nama_lengkap = $request->nama;
-        $dosen->email = $request->email;
-        $dosen->wa_aktif = $request->wa;
-        $dosen->foto = $fileName;
-        $dosen->save();
+
+        $dosen = Dosen::create($attributes);
+
+        // Auth::login($user);
+        // return redirect('/')->with('succes', 'your account has been created');
         return redirect('/dosen/' .  $request->nip . '/profil');
+
+
+        // $dosen = new dosen();
+
+        // $file = Request()->foto;
+        // date_default_timezone_set("Asia/Jakarta");
+        // $tanggal = date("Ymd");
+        // $nama = Request()->nama;
+
+        // $fileName = $nama . '_' . $tanggal . '.' . $file->extension();
+        // //make directory
+        // $path = public_path() . '/img/dosen/' . $nama;
+        // if (!File::exists($path)) {
+        //     File::makeDirectory($path, 0777, true, false);
+        // }
+        // // pindahkan file
+        // $file->move(public_path('/img/dosen/' . $nama), $fileName);
+
+        // $dosen->nip = $request->nip;
+        // $dosen->nama_lengkap = $request->nama;
+        // $dosen->email = $request->email;
+        // $dosen->wa_aktif = $request->wa;
+        // $dosen->foto = $fileName;
+        // $dosen->save();
+
+        // return redirect('/dosen/' .  $request->nip . '/profil');
     }
 
     /**

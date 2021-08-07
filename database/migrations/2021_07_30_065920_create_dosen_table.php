@@ -18,7 +18,7 @@ class CreateDosenTable extends Migration
             $table->string('nama_lengkap');
             $table->string('wa_aktif');
             $table->string('email');
-            $table->string('foto');
+            $table->string('foto')->nullable();
         });
     }
 

@@ -50,23 +50,25 @@
                                 $i = 1;
                             @endphp
                             <tbody class="text-gray-700">
-
-                                @foreach ($list_mahasiswa as $item)
+                                @foreach ($list_mahasiswa as $mahasiswa)
                                     <tr>
-                                        <td class="text-left py-3 px-4"><a
-                                                class="hover:text-blue-500">{{ $i }}</a>
+                                        <td class="text-left py-3 px-4">
+                                            <a href="/" style="display:block;" class="hover:text-blue-500">
+                                                {{ $i }}
+                                            </a>
+                                        </td>
+                                        <td class="text-left py-3 px-4"><a href="/" style="display:block;"
+                                                class="hover:text-blue-500">{{ $mahasiswa->nim }}</a></td>
+                                        <td class="text-left py-3 px-4"><a href="/" style="display:block;"
+                                                class="hover:text-blue-500">{{ $mahasiswa->nama_lengkap }}</a>
                                         </td>
                                         <td class="text-left py-3 px-4"><a
-                                                class="hover:text-blue-500">{{ $item->nim }}</a></td>
+                                                class="hover:text-blue-500">{{ $mahasiswa->kurikulum }}</a></td>
                                         <td class="text-left py-3 px-4"><a
-                                                class="hover:text-blue-500">{{ $item->nama_lengkap }}</a></td>
-                                        <td class="text-left py-3 px-4"><a
-                                                class="hover:text-blue-500">{{ $item->kurikulum }}</a></td>
-                                        <td class="text-left py-3 px-4"><a
-                                                class="hover:text-blue-500">{{ $item->wa_aktif }}</a>
+                                                class="hover:text-blue-500">{{ $mahasiswa->wa_aktif }}</a>
                                         </td>
                                         <td class="text-left py-3 px-4"><a
-                                                class="hover:text-blue-500">{{ $item->email }}</a>
+                                                class="hover:text-blue-500">{{ $mahasiswa->email }}</a>
                                         </td>
                                     </tr>
                                     @php
