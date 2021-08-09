@@ -4,4 +4,7 @@
     <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="{{ $id }}"
         name="{{ $id }}" type="{{ $type }}" {{ $required ? 'required' : '' }}
         value="{{ $rememberOldValue ? old($id) : '' }}">
+    @error('{{ id }}')
+        <p style="text-red-100">{{ $message }}</p>
+    @enderror
 </div>

@@ -64,35 +64,10 @@ class DosenProfilController extends Controller
 
         $dosen = Dosen::create($attributes);
 
-        // Auth::login($user);
+        // TODO : Create auth setup for mahasiswa and dosen, then login after register (To be discussed)
+        // Auth::login($dosen);
         // return redirect('/')->with('succes', 'your account has been created');
         return redirect('/dosen/' .  $request->nip . '/profil');
-
-
-        // $dosen = new dosen();
-
-        // $file = Request()->foto;
-        // date_default_timezone_set("Asia/Jakarta");
-        // $tanggal = date("Ymd");
-        // $nama = Request()->nama;
-
-        // $fileName = $nama . '_' . $tanggal . '.' . $file->extension();
-        // //make directory
-        // $path = public_path() . '/img/dosen/' . $nama;
-        // if (!File::exists($path)) {
-        //     File::makeDirectory($path, 0777, true, false);
-        // }
-        // // pindahkan file
-        // $file->move(public_path('/img/dosen/' . $nama), $fileName);
-
-        // $dosen->nip = $request->nip;
-        // $dosen->nama_lengkap = $request->nama;
-        // $dosen->email = $request->email;
-        // $dosen->wa_aktif = $request->wa;
-        // $dosen->foto = $fileName;
-        // $dosen->save();
-
-        // return redirect('/dosen/' .  $request->nip . '/profil');
     }
 
     /**

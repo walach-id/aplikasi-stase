@@ -19,19 +19,8 @@
                                 action="{{ url('dosen/profil/store') }}" method="POST">
                                 @csrf
                                 <x-input text='NIP' id='nip' :required='true' />
-                                @error('nip')
-                                    <p style="text-red-100">{{ $message }}</p>
-                                @enderror
-
                                 <x-input text='Nama Lengkap' id='nama_lengkap' :required='true' />
-                                @error('nama_lengkap')
-                                    <p style="text-red-100">{{ $message }}</p>
-                                @enderror
-
                                 <x-input text='Email' id='email' :required='true' type='email' />
-                                @error('email')
-                                    <p style="text-red-100">{{ $message }}</p>
-                                @enderror
 
                                 {{-- <x-input text='Password' id='password' :required='true' type='password'
                                     :rememberOldValue='false' />
@@ -40,10 +29,6 @@
                                 @enderror --}}
 
                                 <x-input text='WA Aktif' id='wa_aktif' />
-                                @error('wa_aktif')
-                                    <p style="text-red-100">{{ $message }}</p>
-                                @enderror
-
                                 <x-input text='Foto' id='foto' type='file' />
 
                                 <div class="mt-6">
