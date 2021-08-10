@@ -1,0 +1,46 @@
+Tabel mata_kuliah
+-----------------
+
+1. id matkul => 1
+2. nama matkul => Manajemen Keperawatan
+3. beban_studi_sks => 2
+
+Tabel cpl
+---------
+
+1. id cpl => 1
+2. id matkul => 1
+3. cpl
+
+cpl nya :
+1. Koneferensi Multidisiplin (pre dan post conference)
+2. Identifikasi faktor resiko kecelakaan kerja
+3. Pembelajaran informed consent tindakan
+4. Penerimaan rujukan balik
+5. Pengendalian infeksi
+6. Rujukan klien
+7. Transfer klien
+8. timbang terima
+9. ronde keperawatan
+
+
+tabel kegiatan_mahasiswa
+------------------------
+
+1. npm mahasiswa
+2. id dosen
+3. id matkul
+4. tgl dan jam kegiatan
+5. tempat praktek
+6. uraian kegiatan
+7. tingkat pencapaian
+
+tabel kegiatan_dosen
+-------------------------
+1. nip dosen
+2. nama dosen
+3. tingkat
+4. tempat praktek
+5. pertemuan ke
+6. tanggal dan jam pertemuan
+7. topik pertemuan
