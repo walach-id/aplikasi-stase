@@ -13,10 +13,10 @@ class CreateKegiatanMahasiswasTable extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatan_mahasiswas', function (Blueprint $table) {
+        Schema::create('kegiatan_mahasiswa', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_dosen');
-            $table->bigInteger('id_matkul');
+            $table->bigInteger('dosen_id');
+            $table->bigInteger('matkul_id');
             $table->dateTime('waktu_kegiatan');
             $table->string('uraian_kegiatan');
             $table->integer('tingkat_pencapaian');

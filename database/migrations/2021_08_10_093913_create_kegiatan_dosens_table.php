@@ -13,7 +13,7 @@ class CreateKegiatanDosensTable extends Migration
      */
     public function up()
     {
-        Schema::create('kegiatan_dosens', function (Blueprint $table) {
+        Schema::create('kegiatan_dosen', function (Blueprint $table) {
             $table->id();
             $table->string('nama_dosen');
             $table->integer('tingkat');

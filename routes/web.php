@@ -2,20 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\mahasiswa;
-use App\Models\dosen;
 use App\Http\Controllers\DosenProfilController;
 use App\Http\Controllers\MahasiswaProfilController;
 
+require __DIR__ . '/auth.php';
 
 Route::get('/', function () {
     return view('index.welcome', ['mahasiswa' => Mahasiswa::with('dosen')->where('nim', '=', '03')->get()]);
-});
+})->middleware(['auth']);
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
 
 // PROFIL DOSEN
 Route::get('dosen/{nip}', fn ($nip) =>  redirect("dosen/{$nip}/profil/"))->whereNumber('nip');

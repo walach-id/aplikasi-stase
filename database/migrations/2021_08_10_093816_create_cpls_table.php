@@ -13,7 +13,7 @@ class CreateCplsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cpls', function (Blueprint $table) {
+        Schema::create('cpl', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('matkul_id');
             $table->timestamps();

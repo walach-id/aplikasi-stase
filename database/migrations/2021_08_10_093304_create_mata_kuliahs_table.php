@@ -13,7 +13,7 @@ class CreateMataKuliahsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mata_kuliahs', function (Blueprint $table) {
+        Schema::create('mata_kuliah', function (Blueprint $table) {
             $table->id();
             $table->string('nama_matkul');
             $table->integer('beban_study');
