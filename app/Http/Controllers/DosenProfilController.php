@@ -58,8 +58,8 @@ class DosenProfilController extends Controller
         // $attributes['password'] = bcrypt($attributes['password']);
 
         if ($request->foto) {
-            $attributes['foto'] =
-                $request->file('foto')->storeAs('foto/dosen', $attributes['nip']);
+            $request->file('foto')->storeAs('public/foto/dosen', $attributes['nip'] . '.' . $request->foto->extension());
+            $attributes['foto'] = $attributes['nip'] . '.' . $request->foto->extension();
         }
 
         $dosen = Dosen::create($attributes);

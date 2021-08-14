@@ -4,7 +4,7 @@
     @if ($dosen)
         <div class="flex flex-col items-center justify-center p-4 bg-white rounded-lg shadow">
             <div class="inline-flex w-40 h-40 overflow-hidden border border-gray-200 rounded-full shadow-lg">
-                <img src="{{ asset('storage/foto/dosen' . $dosen->foto) }}" alt="" class="w-full h-full">
+                <img src="{{ asset('storage/foto/dosen/' . $dosen->foto) }}" alt="" class="w-full h-full">
             </div>
 
             <h2 class="mt-4 text-xl font-bold">{{ $dosen->nama_lengkap }}</h2>
